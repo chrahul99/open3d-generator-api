@@ -1,6 +1,6 @@
 # Open 3D Generator API
 
-Open-source FastAPI service for generating 3D assets from one image or multiple images. The API is model-agnostic: it ships with a tiny built-in test engine and can call locally installed open-source generators through configurable command adapters.
+Open-source FastAPI service for generating AI 3D assets from one image or multiple images. The API is model-agnostic: it ships with a tiny built-in test engine and can call locally installed open-source generators through configurable command adapters.
 
 ## Supported workflow
 
