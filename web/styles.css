@@ -1,0 +1,364 @@
+:root {
+  color-scheme: light;
+  --ink: #17212b;
+  --muted: #637083;
+  --line: #d8dee7;
+  --surface: #ffffff;
+  --page: #f3f5f0;
+  --accent: #0f766e;
+  --accent-strong: #0b5f59;
+  --warn: #9f3a38;
+  --blue: #315f8c;
+  --shadow: 0 18px 48px rgba(23, 33, 43, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: var(--page);
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+.shell {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 24px 0;
+}
+
+.topbar,
+.storage-strip,
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.topbar {
+  min-height: 108px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 24px;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+h1,
+h2 {
+  margin: 0;
+  letter-spacing: 0;
+}
+
+h1 {
+  font-size: clamp(32px, 5vw, 58px);
+  line-height: 0.96;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+.status-pill,
+.job-status {
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: #e7f2ef;
+  color: var(--accent-strong);
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.9fr) minmax(420px, 1.2fr);
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.panel {
+  padding: 18px;
+}
+
+.panel-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.dropzone {
+  display: grid;
+  place-items: center;
+  min-height: 190px;
+  border: 1px dashed #8e9bad;
+  border-radius: 8px;
+  background: #f9faf6;
+  color: var(--muted);
+  cursor: pointer;
+  text-align: center;
+  padding: 18px;
+}
+
+.dropzone.dragging {
+  border-color: var(--accent);
+  background: #edf8f5;
+}
+
+.dropzone input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.dropzone-title {
+  display: block;
+  color: var(--ink);
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.dropzone-meta {
+  display: block;
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.field-grid {
+  display: grid;
+  grid-template-columns: 1fr 140px;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+label span {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+select {
+  width: 100%;
+  min-height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--ink);
+  background: #fff;
+  padding: 0 12px;
+}
+
+.engine-note {
+  min-height: 58px;
+  margin-top: 14px;
+  padding: 12px;
+  border-left: 3px solid var(--blue);
+  background: #f4f7fa;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.primary-button,
+.secondary-button,
+.danger-button,
+.ghost-button {
+  min-height: 40px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 0 14px;
+  font-weight: 800;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.primary-button {
+  width: 100%;
+  margin-top: 16px;
+  background: var(--accent);
+  color: #fff;
+}
+
+.primary-button:hover {
+  background: var(--accent-strong);
+}
+
+.secondary-button,
+.ghost-button {
+  color: var(--blue);
+  background: #eef3f8;
+  border-color: #cbd8e4;
+}
+
+.danger-button {
+  color: #fff;
+  background: var(--warn);
+}
+
+button:disabled,
+.disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.model-stage {
+  min-height: 300px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background:
+    linear-gradient(#dfe5ec 1px, transparent 1px),
+    linear-gradient(90deg, #dfe5ec 1px, transparent 1px),
+    #f8fafc;
+  background-size: 32px 32px;
+  perspective: 760px;
+}
+
+.mesh-orbit {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  transform-style: preserve-3d;
+  animation: orbit 9s linear infinite;
+}
+
+.mesh-face {
+  position: absolute;
+  inset: 18px;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  border: 2px solid rgba(15, 118, 110, 0.85);
+  background: rgba(15, 118, 110, 0.18);
+}
+
+.face-a {
+  transform: rotateY(0deg) translateZ(44px);
+}
+
+.face-b {
+  transform: rotateY(120deg) translateZ(44px);
+}
+
+.face-c {
+  transform: rotateY(240deg) translateZ(44px);
+}
+
+@keyframes orbit {
+  from {
+    transform: rotateX(-18deg) rotateY(0deg);
+  }
+  to {
+    transform: rotateX(-18deg) rotateY(360deg);
+  }
+}
+
+.job-details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.job-details div {
+  min-width: 0;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 8px;
+}
+
+dt {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+dd {
+  margin: 4px 0 0;
+  overflow-wrap: anywhere;
+  font-size: 14px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.actions > * {
+  flex: 1;
+}
+
+.error-text {
+  min-height: 20px;
+  margin: 12px 0 0;
+  color: var(--warn);
+  font-size: 13px;
+}
+
+.storage-strip {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 16px;
+  margin-top: 18px;
+  padding: 16px 18px;
+}
+
+.meter {
+  height: 12px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #dfe5ec;
+}
+
+.meter span {
+  display: block;
+  width: 0%;
+  height: 100%;
+  background: var(--accent);
+  transition: width 180ms ease;
+}
+
+@media (max-width: 820px) {
+  .topbar,
+  .storage-strip {
+    grid-template-columns: 1fr;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .workspace,
+  .field-grid,
+  .job-details,
+  .storage-strip {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}

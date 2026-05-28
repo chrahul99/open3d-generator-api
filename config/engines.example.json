@@ -1,0 +1,68 @@
+{
+  "engines": [
+    {
+      "name": "hunyuan3d",
+      "display_name": "Hunyuan3D",
+      "description": "Recommended high-quality open-source single and multi-view image-to-3D backend.",
+      "supports": ["single", "multi"],
+      "output_formats": ["obj", "glb"],
+      "purpose": "quality",
+      "quality_notes": "Best-quality target backend. Accuracy depends on image quality, object visibility, and local Hunyuan model setup.",
+      "storage_notes": "Model weights are not included. Keep the Hunyuan checkout and weights outside this repo, preferably on another drive.",
+      "command": [
+        "python",
+        "scripts/hunyuan3d_runner.py",
+        "--repo-path",
+        "D:/models/Hunyuan3D-2.1",
+        "--images",
+        "{inputs_dir}",
+        "--output",
+        "{output}",
+        "--format",
+        "{format}"
+      ],
+      "timeout_seconds": 3600
+    },
+    {
+      "name": "triposr",
+      "display_name": "TripoSR",
+      "description": "Fast open-source single-image 3D reconstruction.",
+      "supports": ["single"],
+      "output_formats": ["obj", "glb"],
+      "purpose": "lightweight",
+      "quality_notes": "Good lightweight starter backend, but usually less detailed than Hunyuan3D.",
+      "storage_notes": "Install model files separately outside this repo.",
+      "command": [
+        "python",
+        "scripts/triposr_runner.py",
+        "--repo-path",
+        "D:/models/TripoSR",
+        "--images",
+        "{inputs_dir}",
+        "--output",
+        "{output}",
+        "--format",
+        "{format}",
+        "--device",
+        "cpu"
+      ]
+    },
+    {
+      "name": "stable-fast-3d",
+      "display_name": "Stable Fast 3D",
+      "description": "Open-source single-image textured mesh reconstruction.",
+      "supports": ["single"],
+      "output_formats": ["glb"],
+      "purpose": "lightweight",
+      "quality_notes": "Fast textured output for single images. Check upstream license terms for your use case.",
+      "storage_notes": "Install model files separately outside this repo.",
+      "command": [
+        "python",
+        "D:/models/stable-fast-3d/run.py",
+        "{input}",
+        "--output",
+        "{output}"
+      ]
+    }
+  ]
+}

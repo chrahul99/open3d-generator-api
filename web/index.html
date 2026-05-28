@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Open 3D Generator API</title>
+    <link rel="stylesheet" href="/ui/styles.css">
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Open 3D Generator API</p>
+          <h1>Image to 3D</h1>
+        </div>
+        <div class="status-pill" id="apiStatus">Checking API</div>
+      </header>
+
+      <section class="workspace">
+        <form class="panel generate-panel" id="generateForm">
+          <div class="panel-heading">
+            <h2>Generate</h2>
+            <button class="ghost-button" id="refreshButton" type="button">Refresh</button>
+          </div>
+
+          <label class="dropzone" id="dropzone">
+            <input id="imageInput" name="images" type="file" accept="image/png,image/jpeg,image/webp" multiple>
+            <span class="dropzone-title">Select images</span>
+            <span class="dropzone-meta" id="fileSummary">PNG, JPEG, or WebP</span>
+          </label>
+
+          <div class="field-grid">
+            <label>
+              <span>Engine</span>
+              <select id="engineSelect" name="engine"></select>
+            </label>
+            <label>
+              <span>Format</span>
+              <select id="formatSelect" name="output_format">
+                <option value="obj">OBJ</option>
+                <option value="glb">GLB</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="engine-note" id="engineNote"></div>
+
+          <button class="primary-button" id="generateButton" type="submit">Generate model</button>
+        </form>
+
+        <section class="panel preview-panel">
+          <div class="panel-heading">
+            <h2>Job</h2>
+            <span class="job-status" id="jobStatus">Idle</span>
+          </div>
+
+          <div class="model-stage" aria-label="model preview">
+            <div class="mesh-orbit" id="meshOrbit">
+              <div class="mesh-face face-a"></div>
+              <div class="mesh-face face-b"></div>
+              <div class="mesh-face face-c"></div>
+            </div>
+          </div>
+
+          <dl class="job-details">
+            <div>
+              <dt>Job ID</dt>
+              <dd id="jobId">None</dd>
+            </div>
+            <div>
+              <dt>Mode</dt>
+              <dd id="jobMode">None</dd>
+            </div>
+            <div>
+              <dt>Engine</dt>
+              <dd id="jobEngine">None</dd>
+            </div>
+            <div>
+              <dt>Updated</dt>
+              <dd id="jobUpdated">None</dd>
+            </div>
+          </dl>
+
+          <div class="actions">
+            <a class="secondary-button disabled" id="downloadButton" href="#" aria-disabled="true">Download</a>
+            <button class="danger-button" id="deleteButton" type="button" disabled>Delete</button>
+          </div>
+          <p class="error-text" id="errorText"></p>
+        </section>
+      </section>
+
+      <section class="storage-strip">
+        <div>
+          <p class="eyebrow">Local storage</p>
+          <strong id="storageText">0 MB used</strong>
+        </div>
+        <div class="meter">
+          <span id="storageMeter"></span>
+        </div>
+        <button class="ghost-button" id="cleanupButton" type="button">Cleanup</button>
+      </section>
+    </main>
+    <script src="/ui/app.js" type="module"></script>
+  </body>
+</html>
